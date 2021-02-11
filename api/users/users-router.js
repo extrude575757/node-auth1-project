@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const protected = require("../auth/auth-midleware.js");
+const protected = require("../auth/auth-midleware.js.js");
 const Users = require("./users-model.js");
 
 router.get("/", protected, (req, res) => {
