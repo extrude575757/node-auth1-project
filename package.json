@@ -7,7 +7,7 @@
       "seed" : "npx knex seed:run",
     "server": "nodemon",
     "start": "node index.js",
-    "commit": "git commit -m {$1}",
+    "commit": "git commit -m  $1",
     "push": "git push origin Nicholas-Lacapria",
     "rmdb": "rm /database/db.db3;",
     "remove": "rm -r node_modules ; rm package-lock.json; rm /database/db.db3;"
