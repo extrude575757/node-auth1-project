@@ -4,11 +4,11 @@ const bcrypt = require("bcryptjs");
 const router = express.Router();
 
 router.post('/register', (req, res) => {
-  const { username, password } = req.body
+  const { username, password, role } = req.body
 
   const hashed = bcrypt.hashSync(password, 13) // 2 ^ 10
 
-  User.add({ username, password: hashed, role: 2 })
+  User.add({ username, password: hashed, role })
     .then(user => {
       res.status(201).json(user)
     })
@@ -26,9 +26,15 @@ router.post('/login', async (req, res) => {
     if (allegedUser && bcrypt.compareSync(password, allegedUser.password)) {
       // save a session with this particular user
       req.session.user = allegedUser // this is the magic: changing the session so it's stored
-      res.json('welcome back')
+      const loginCreds = {
+        id: req.session.user.id,welcomeMsg:'welcome back',
+      cookie: req.headers.cookie, session: req.session,
+       usr:req.session.user
+           }
+      console.log(req.headers.cookie)
+      res.json(loginCreds);
     } else {
-      res.status(401).json('invalid credentials')
+      res.status(401).json('NONE SHALL PASS')
     }
   } catch (err) {
     res.status(500).json(err.message)
