@@ -4,8 +4,8 @@ const session = require("express-session");
 const cors = require("cors");
 const KnexSessionStore = require("connect-session-knex")(session)
 
-const usersRouter = require("./users/users-router.js");
-const authRouter = require("./auth/auth-router.js");
+const usersRouter = require("./users/users-router");
+const authRouter = require("./auth/auth-router");
 
 const server = express();
 
